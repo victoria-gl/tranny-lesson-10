@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,7 +8,7 @@
     <title>Document</title>
   </head>
 
-  <body>
+  <body> -->
 
     <!-- Урок 10.1 -->
 
@@ -29,7 +29,7 @@
     </form> -->
 
     <!-- Практика -->
-    <form action="submit" class="js-search-form search-form">
+    <!-- <form action="submit" class="js-search-form search-form">
       <div class="form-group">
         <label for="city" class="label">Введіть назву міста:</label>
         <input
@@ -54,6 +54,60 @@
 
     <ul class="js-list weather-cards"></ul>
 
+    <script src="./script.js"></script>
+  </body>
+</html> -->
+
+
+
+<!-- Урок 10.2 -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul class="js-movie-list movie-list"></ul>
+    <!-- Load more -->
+    <!-- <div class="button-container">
+        <button class="js-load-more load-more-hidden">Load more</button>
+    </div> -->
+
+
+    <!-- Infinity scroll -->
+    <!-- <div class="js-guard"></div> -->
+
+
+    <input type="text" id="datetime-picker" />
+    <button type="button" data-start>Start</button>
+
+    <div class="timer">
+      <div class="field">
+        <span class="value" data-days>00</span>
+        <span class="label">Days</span>
+      </div>
+      <div class="field">
+        <span class="value" data-hours>00</span>
+        <span class="label">Hours</span>
+      </div>
+      <div class="field">
+        <span class="value" data-minutes>00</span>
+        <span class="label">Minutes</span>
+      </div>
+      <div class="field">
+        <span class="value" data-seconds>00</span>
+        <span class="label">Seconds</span>
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>
