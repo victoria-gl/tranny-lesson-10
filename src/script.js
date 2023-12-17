@@ -129,7 +129,7 @@
 
 
                                                   
-axios.defaults.header.common["x-api-key"] = "YOUR_KEY";
+// axios.defaults.header.common["x-api-key"] = "YOUR_KEY";
 
 
 
@@ -152,123 +152,67 @@ axios.defaults.header.common["x-api-key"] = "YOUR_KEY";
 // *********************** Кнопка "Load More" ************************** \\
 
 
-// const container = document.querySelector(".js-movie-list");
-// const loadMore = document.querySelector(".js-load-more");
-// let page = 1;
+const container = document.querySelector(".js-movie-list");
+const loadMore = document.querySelector(".js-load-more");
+let page = 1;
 
 // loadMore.addEventListener("click", onLoadMore)
 
-// serviceMovie()
-//     .then(data => {
-//         container.insertAdjacentHTML("beforeend", createMarkup(data.results));
+serviceMovie()
+    .then(data => {
+        container.insertAdjacentHTML("beforeend", createMarkup(data.results));
 
-//         if(data.page < data.total_pages) { // data.page < 500
-//             loadMore.classList.replace("load-more-hidden", "load-more")
-//         }
-//     })
-//     .catch(error => console.log("Error!!!!", error))
+        if(data.page < data.total_pages) { // data.page < 500
+            loadMore.classList.replace("load-more-hidden", "load-more")
+        }
+    })
+    .catch(error => console.log("Error!!!!", error))
 
-// function serviceMovie(page = 1) {
-//     const BASE_URL = "https://api.themoviedb.org/3";
-//     const END_POINT = "/trending/movie/week";
-//     const API_KEY = "345007f9ab440e5b86cef51be6397df1";
+function serviceMovie(page = 1) {
+    const BASE_URL = "https://api.themoviedb.org/3";
+    const END_POINT = "/trending/movie/week";
+    const API_KEY = "345007f9ab440e5b86cef51be6397df1";
 
-//     const queryParams = new URLSearchParams({
-//         api_key: API_KEY,
-//         page: page
-//     })
+    const queryParams = new URLSearchParams({
+        api_key: API_KEY,
+        page: page
+    })
 
-//     return fetch(`${BASE_URL}${END_POINT}?${queryParams}`)
-//         .then(resp => {
-//             if(!resp.ok) {
-//                 throw new Error(resp.statusText)
-//             }
-//             return resp.json()
-//         })
-// }
+    return fetch(`${BASE_URL}${END_POINT}?${queryParams}`)
+        .then(resp => {
+            if(!resp.ok) {
+                throw new Error(resp.statusText)
+            }
+            return resp.json()
+        })
+}
 
-// function createMarkup(arr) {
-//     return arr.map(({ poster_path, release_date, original_title, vote_average }) => `
-//         <li class="movie-card">
-//             <img src="https://image.tmdb.org/t/p/w300${poster_path}" alt="${original_title}">
-//             <div class="movie-info">
-//                 <h2>${original_title}</h2>
-//                 <p>Release date: ${release_date}</p>
-//                 <p>Vote average: ${vote_average}</p>
-//             </div>
-//         </li>
-//     `).join("")
-// }
+function createMarkup(arr) {
+    return arr.map(({ poster_path, release_date, original_title, vote_average }) => `
+        <li class="movie-card">
+            <img src="https://image.tmdb.org/t/p/w300${poster_path}" alt="${original_title}">
+            <div class="movie-info">
+                <h2>${original_title}</h2>
+                <p>Release date: ${release_date}</p>
+                <p>Vote average: ${vote_average}</p>
+            </div>
+        </li>
+    `).join("")
+}
 
+function onLoadMore(){
+    page += 1;
 
-// function onLoadMore() {
-//     page += 1;
+    serviceMovie(page)
+        .then(data => {
+            container.insertAdjacentHTML("beforeend", createMarkup(data.results))
 
-//     serviceMovie(page)
-//         .then(data => {
-//             container.insertAdjacentHTML("beforeend", createMarkup(data.results))
+            if(data.page >= data.total_pages){
+                loadMore.classList.replace("load-more", "load-more-hidden")
+            }
+        })
+}
 
-//             if(data.page >= data.total_pages) { // data.page >=
-//                 loadMore.classList.replace("load-more", "load-more-hidden")
-//             }
-//         })
-// }
-
-
-// function serviceMovie(page = 1) {
-//     const BASE_URL = "https://api.themoviedb.org/3";
-//     const END_POINT = "/trending/movie/week";
-//     const API_KEY = "345007f9ab440e5b86cef51be6397df1";
-
-//     const queryParams = new URLSearchParams({
-//         api_key: API_KEY,
-//         page: page
-//     })
-
-//     return axios.get(`${BASE_URL}${END_POINT}?${queryParams}`)
-//         .then(resp => {
-//             return resp.data
-//         })
-//         .catch(error => {
-//             throw new Error(error)
-//         })
-// }
-
-// async function render() {
-//     try {
-//         const data = await serviceMovie()
-//         container.insertAdjacentHTML("beforeend", createMarkup(data.results));
-
-//         if(data.page < data.total_pages) { // data.page < 500
-//             loadMore.classList.replace("load-more-hidden", "load-more")
-//         }
-//     } catch(error) {
-//         console.log("Error!!!!", error);
-//     }
-// }
-// render()
-
-
-// async function serviceMovie(page = 1) {
-//     const BASE_URL = "https://api.themoviedb.org/3";
-//     const END_POINT = "/trending/movie/week";
-//     const API_KEY = "345007f9ab440e5b86cef51be6397df1";
-
-//     const queryParams = new URLSearchParams({
-//         api_key: API_KEY,
-//         page: page
-//     })
-
-//     try {
-//         const res = await axios.get(`${BASE_URL}${END_POINT}?${queryParams}`)
-//         return await res.data
-//     } catch(error) {
-//         throw new Error(error)
-//     }
-
-// }
-
-// serviceMovie()
 
 
 // ********************************Infinity scroll ********************** \\
